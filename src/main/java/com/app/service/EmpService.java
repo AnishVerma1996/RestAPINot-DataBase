@@ -34,18 +34,22 @@ public List<Employee> getEmp()
 public boolean updateEmp(Employee e)
 {
 	boolean b=false;
+	Employee upObj=null;
+	Employee delObj=null;
 	try
 	{
-		if(emplist.contains(e))
+		
+		for(Employee e1:emplist)
 		{
-			Employee updateEmp=new Employee();
-			updateEmp.setEid(e.getEid());
-			updateEmp.setEname(e.getEname());
-			updateEmp.setEsal(e.getEsal());
-			emplist.remove(e);
-			emplist.add(updateEmp);
-			b=true;
+			if(e1.getEid()==e.getEid())
+			{
+				upObj=e;
+				delObj=e1;
+				b=true;
+			}
 		}
+		emplist.add(upObj);
+		emplist.remove(delObj);
 	}
 	catch(Exception e1)
 	{
